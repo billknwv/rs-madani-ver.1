@@ -1,0 +1,458 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use App\Http\Controllers\Controller;
+use App\Models\Layanan;
+use Illuminate\Http\Request;
+
+class LayananController extends Controller
+{
+    public function index()
+    {
+        $klinik = [
+            [
+                'nama' => 'Klinik Gizi',
+                'deskripsi' => 'Layanan konsultasi gizi dan dietetik untuk membantu pasien mencapai pola makan sehat sesuai kondisi kesehatan.',
+                'icon' => 'bi-cup-hot',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#11998e',
+                'gradient_end' => '#38ef7d',
+            ],
+            [
+                'nama' => 'Klinik HIV/AIDS',
+                'deskripsi' => 'Pelayanan komprehensif untuk pasien HIV/AIDS dengan pendekatan medis dan dukungan psikososial.',
+                'icon' => 'bi-heart-pulse',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#eb3349',
+                'gradient_end' => '#f45c43',
+            ],
+            [
+                'nama' => 'Klinik Bedah',
+                'deskripsi' => 'Layanan bedah umum dan spesialis untuk penanganan berbagai kondisi yang memerlukan tindakan operatif.',
+                'icon' => 'bi-scissors',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-16:00',
+                'gradient_start' => '#0f2027',
+                'gradient_end' => '#203a43',
+            ],
+            [
+                'nama' => 'Klinik Anak',
+                'deskripsi' => 'Pelayanan kesehatan anak dari bayi hingga remaja dengan pendekatan ramah anak dan menyenangkan.',
+                'icon' => 'bi-emoji-smile',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#56ab2f',
+                'gradient_end' => '#a8e063',
+            ],
+            [
+                'nama' => 'Klinik Jantung',
+                'deskripsi' => 'Diagnosis dan penanganan penyakit jantung serta pembuluh darah dengan peralatan medis modern.',
+                'icon' => 'bi-heart',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#ed213a',
+                'gradient_end' => '#93291e',
+            ],
+            [
+                'nama' => 'Klinik Mata',
+                'deskripsi' => 'Pemeriksaan dan pengobatan berbagai gangguan kesehatan mata dengan teknologi diagnostik terkini.',
+                'icon' => 'bi-eye',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#00b4db',
+                'gradient_end' => '#0083b0',
+            ],
+            [
+                'nama' => 'Klinik THT',
+                'deskripsi' => 'Pelayanan kesehatan telinga, hidung, tenggorokan, kepala, dan leher secara komprehensif.',
+                'icon' => 'bi-ear',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-15:00',
+                'gradient_start' => '#7F00FF',
+                'gradient_end' => '#E100FF',
+            ],
+            [
+                'nama' => 'Klinik Saraf',
+                'deskripsi' => 'Penanganan gangguan sistem saraf pusat dan tepi termasuk stroke, epilepsi, dan nyeri neuropatik.',
+                'icon' => 'bi-brain',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#0D1B3D',
+                'gradient_end' => '#1a2d5e',
+            ],
+            [
+                'nama' => 'Klinik Jiwa',
+                'deskripsi' => 'Layanan kesehatan jiwa untuk diagnosis dan terapi gangguan mental serta konseling psikologis.',
+                'icon' => 'bi-chat-dots',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#834d9b',
+                'gradient_end' => '#d04ed6',
+            ],
+            [
+                'nama' => 'Klinik Gigi',
+                'deskripsi' => 'Perawatan gigi dan mulut menyeluruh termasuk tambal, cabut, scaling, dan prostodontik.',
+                'icon' => 'bi-droplet',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-16:00',
+                'gradient_start' => '#00c6ff',
+                'gradient_end' => '#0072ff',
+            ],
+            [
+                'nama' => 'Klinik Obgyn',
+                'deskripsi' => 'Pelayanan kesehatan reproduksi wanita, kehamilan, persalinan, dan pemeriksaan kandungan.',
+                'icon' => 'bi-gender-female',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#f953c6',
+                'gradient_end' => '#b91d73',
+            ],
+            [
+                'nama' => 'Klinik Penyakit Dalam',
+                'deskripsi' => 'Diagnosis dan penanganan penyakit internal dewasa termasuk diabetes, hipertensi, dan infeksi.',
+                'icon' => 'bi-lungs',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-16:00',
+                'gradient_start' => '#314755',
+                'gradient_end' => '#26a0da',
+            ],
+            [
+                'nama' => 'Klinik Paru',
+                'deskripsi' => 'Penanganan gangguan sistem pernapasan termasuk asma, PPOK, TBC paru, dan infeksi paru.',
+                'icon' => 'bi-wind',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#3a7bd5',
+                'gradient_end' => '#3a6073',
+            ],
+            [
+                'nama' => 'Klinik Kulit',
+                'deskripsi' => 'Diagnosis dan terapi berbagai penyakit kulit, kelamin, dan estetika dengan metode modern.',
+                'icon' => 'bi-hand-index',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-15:00',
+                'gradient_start' => '#ee9ca7',
+                'gradient_end' => '#ffdde1',
+            ],
+        ];
+
+        $ruangan = [
+            [
+                'nama' => 'Ruang Nangka',
+                'deskripsi' => 'Ruangan perawatan kelas standar dengan fasilitas dasar yang nyaman untuk pasien umum.',
+                'icon' => 'bi-house-door',
+                'badge' => 'Kelas 3',
+                'kapasitas' => '4 Tempat Tidur',
+                'gradient_start' => '#4facfe',
+                'gradient_end' => '#00f2fe',
+            ],
+            [
+                'nama' => 'Ruang Jambu',
+                'deskripsi' => 'Ruangan perawatan dengan fasilitas ditingkatkan dan kapasitas lebih kecil untuk privasi lebih baik.',
+                'icon' => 'bi-building',
+                'badge' => 'Kelas 2',
+                'kapasitas' => '3 Tempat Tidur',
+                'gradient_start' => '#43e97b',
+                'gradient_end' => '#38f9d7',
+            ],
+            [
+                'nama' => 'Ruang Melon',
+                'deskripsi' => 'Ruangan semi privat dengan fasilitas lengkap untuk kenyamanan optimal pasien.',
+                'icon' => 'bi-building',
+                'badge' => 'Kelas 1',
+                'kapasitas' => '2 Tempat Tidur',
+                'gradient_start' => '#fa709a',
+                'gradient_end' => '#fee140',
+            ],
+            [
+                'nama' => 'Ruang Anggrek',
+                'deskripsi' => 'Ruangan privat dengan suasana tenang dan fasilitas premium untuk pemulihan maksimal.',
+                'icon' => 'bi-flower1',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#a18cd1',
+                'gradient_end' => '#fbc2eb',
+            ],
+            [
+                'nama' => 'Ruang Mawar',
+                'deskripsi' => 'Ruangan VIP dengan interior elegan dan pelayanan eksklusif selama masa perawatan.',
+                'icon' => 'bi-flower1',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#f093fb',
+                'gradient_end' => '#f5576c',
+            ],
+            [
+                'nama' => 'Ruang Flamboyan',
+                'deskripsi' => 'Ruangan utama dengan pemandangan taman, desain modern, dan fasilitas lengkap.',
+                'icon' => 'bi-sun',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#4facfe',
+                'gradient_end' => '#00f2fe',
+            ],
+            [
+                'nama' => 'Ruang ICU',
+                'deskripsi' => 'Unit perawatan intensif dengan monitor 24 jam dan tim medis spesialis untuk pasien kritis.',
+                'icon' => 'bi-activity',
+                'badge' => 'ICU',
+                'kapasitas' => '5 Tempat Tidur',
+                'gradient_start' => '#0D1B3D',
+                'gradient_end' => '#1a2d5e',
+            ],
+            [
+                'nama' => 'Ruang VIP',
+                'deskripsi' => 'Suite eksklusif dengan fasilitas bintang lima, ruang tamu terpisah, dan layanan butler.',
+                'icon' => 'bi-star',
+                'badge' => 'VVIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#fccb90',
+                'gradient_end' => '#d57eeb',
+            ],
+            [
+                'nama' => 'Ruang Anak',
+                'deskripsi' => 'Ruangan khusus anak dengan dekorasi ramah anak, play area, dan pendampingan orang tua.',
+                'icon' => 'bi-emoji-smile',
+                'badge' => 'Anak',
+                'kapasitas' => '3 Tempat Tidur',
+                'gradient_start' => '#56ab2f',
+                'gradient_end' => '#a8e063',
+            ],
+        ];
+
+        return view('layanan.index', compact('klinik', 'ruangan'));
+    }
+
+    public function detail($slug)
+    {
+        $layanan = Layanan::where('slug', $slug)->firstOrFail();
+        $allLayanan = Layanan::where('id', '!=', $layanan->id)->get();
+        return view('layanan.detail', compact('layanan', 'allLayanan'));
+    }
+
+    public function rawatJalan()
+    {
+        $klinik = [
+            [
+                'nama' => 'Klinik Gizi',
+                'deskripsi' => 'Layanan konsultasi gizi dan dietetik untuk membantu pasien mencapai pola makan sehat sesuai kondisi kesehatan.',
+                'icon' => 'bi-cup-hot',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#11998e',
+                'gradient_end' => '#38ef7d',
+            ],
+            [
+                'nama' => 'Klinik HIV/AIDS',
+                'deskripsi' => 'Pelayanan komprehensif untuk pasien HIV/AIDS dengan pendekatan medis dan dukungan psikososial.',
+                'icon' => 'bi-heart-pulse',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#eb3349',
+                'gradient_end' => '#f45c43',
+            ],
+            [
+                'nama' => 'Klinik Bedah',
+                'deskripsi' => 'Layanan bedah umum dan spesialis untuk penanganan berbagai kondisi yang memerlukan tindakan operatif.',
+                'icon' => 'bi-scissors',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-16:00',
+                'gradient_start' => '#0f2027',
+                'gradient_end' => '#203a43',
+            ],
+            [
+                'nama' => 'Klinik Anak',
+                'deskripsi' => 'Pelayanan kesehatan anak dari bayi hingga remaja dengan pendekatan ramah anak dan menyenangkan.',
+                'icon' => 'bi-emoji-smile',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#56ab2f',
+                'gradient_end' => '#a8e063',
+            ],
+            [
+                'nama' => 'Klinik Jantung',
+                'deskripsi' => 'Diagnosis dan penanganan penyakit jantung serta pembuluh darah dengan peralatan medis modern.',
+                'icon' => 'bi-heart',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#ed213a',
+                'gradient_end' => '#93291e',
+            ],
+            [
+                'nama' => 'Klinik Mata',
+                'deskripsi' => 'Pemeriksaan dan pengobatan berbagai gangguan kesehatan mata dengan teknologi diagnostik terkini.',
+                'icon' => 'bi-eye',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#00b4db',
+                'gradient_end' => '#0083b0',
+            ],
+            [
+                'nama' => 'Klinik THT',
+                'deskripsi' => 'Pelayanan kesehatan telinga, hidung, tenggorokan, kepala, dan leher secara komprehensif.',
+                'icon' => 'bi-ear',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-15:00',
+                'gradient_start' => '#7F00FF',
+                'gradient_end' => '#E100FF',
+            ],
+            [
+                'nama' => 'Klinik Saraf',
+                'deskripsi' => 'Penanganan gangguan sistem saraf pusat dan tepi termasuk stroke, epilepsi, dan nyeri neuropatik.',
+                'icon' => 'bi-brain',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#0D1B3D',
+                'gradient_end' => '#1a2d5e',
+            ],
+            [
+                'nama' => 'Klinik Jiwa',
+                'deskripsi' => 'Layanan kesehatan jiwa untuk diagnosis dan terapi gangguan mental serta konseling psikologis.',
+                'icon' => 'bi-chat-dots',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#834d9b',
+                'gradient_end' => '#d04ed6',
+            ],
+            [
+                'nama' => 'Klinik Gigi',
+                'deskripsi' => 'Perawatan gigi dan mulut menyeluruh termasuk tambal, cabut, scaling, dan prostodontik.',
+                'icon' => 'bi-droplet',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-16:00',
+                'gradient_start' => '#00c6ff',
+                'gradient_end' => '#0072ff',
+            ],
+            [
+                'nama' => 'Klinik Obgyn',
+                'deskripsi' => 'Pelayanan kesehatan reproduksi wanita, kehamilan, persalinan, dan pemeriksaan kandungan.',
+                'icon' => 'bi-gender-female',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-15:00',
+                'gradient_start' => '#f953c6',
+                'gradient_end' => '#b91d73',
+            ],
+            [
+                'nama' => 'Klinik Penyakit Dalam',
+                'deskripsi' => 'Diagnosis dan penanganan penyakit internal dewasa termasuk diabetes, hipertensi, dan infeksi.',
+                'icon' => 'bi-lungs',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-16:00',
+                'gradient_start' => '#314755',
+                'gradient_end' => '#26a0da',
+            ],
+            [
+                'nama' => 'Klinik Paru',
+                'deskripsi' => 'Penanganan gangguan sistem pernapasan termasuk asma, PPOK, TBC paru, dan infeksi paru.',
+                'icon' => 'bi-wind',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 08:00-14:00',
+                'gradient_start' => '#3a7bd5',
+                'gradient_end' => '#3a6073',
+            ],
+            [
+                'nama' => 'Klinik Kulit',
+                'deskripsi' => 'Diagnosis dan terapi berbagai penyakit kulit, kelamin, dan estetika dengan metode modern.',
+                'icon' => 'bi-hand-index',
+                'badge' => 'Klinik',
+                'jadwal' => 'Sen-Jum, 09:00-15:00',
+                'gradient_start' => '#ee9ca7',
+                'gradient_end' => '#ffdde1',
+            ],
+        ];
+
+        return view('layanan.rawat-jalan', compact('klinik'));
+    }
+
+    public function rawatInap()
+    {
+        $ruangan = [
+            [
+                'nama' => 'Ruang Nangka',
+                'deskripsi' => 'Ruangan perawatan kelas standar dengan fasilitas dasar yang nyaman untuk pasien umum.',
+                'icon' => 'bi-house-door',
+                'badge' => 'Kelas 3',
+                'kapasitas' => '4 Tempat Tidur',
+                'gradient_start' => '#4facfe',
+                'gradient_end' => '#00f2fe',
+            ],
+            [
+                'nama' => 'Ruang Jambu',
+                'deskripsi' => 'Ruangan perawatan dengan fasilitas ditingkatkan dan kapasitas lebih kecil untuk privasi lebih baik.',
+                'icon' => 'bi-building',
+                'badge' => 'Kelas 2',
+                'kapasitas' => '3 Tempat Tidur',
+                'gradient_start' => '#43e97b',
+                'gradient_end' => '#38f9d7',
+            ],
+            [
+                'nama' => 'Ruang Melon',
+                'deskripsi' => 'Ruangan semi privat dengan fasilitas lengkap untuk kenyamanan optimal pasien.',
+                'icon' => 'bi-building',
+                'badge' => 'Kelas 1',
+                'kapasitas' => '2 Tempat Tidur',
+                'gradient_start' => '#fa709a',
+                'gradient_end' => '#fee140',
+            ],
+            [
+                'nama' => 'Ruang Anggrek',
+                'deskripsi' => 'Ruangan privat dengan suasana tenang dan fasilitas premium untuk pemulihan maksimal.',
+                'icon' => 'bi-flower1',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#a18cd1',
+                'gradient_end' => '#fbc2eb',
+            ],
+            [
+                'nama' => 'Ruang Mawar',
+                'deskripsi' => 'Ruangan VIP dengan interior elegan dan pelayanan eksklusif selama masa perawatan.',
+                'icon' => 'bi-flower1',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#f093fb',
+                'gradient_end' => '#f5576c',
+            ],
+            [
+                'nama' => 'Ruang Flamboyan',
+                'deskripsi' => 'Ruangan utama dengan pemandangan taman, desain modern, dan fasilitas lengkap.',
+                'icon' => 'bi-sun',
+                'badge' => 'VIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#4facfe',
+                'gradient_end' => '#00f2fe',
+            ],
+            [
+                'nama' => 'Ruang ICU',
+                'deskripsi' => 'Unit perawatan intensif dengan monitor 24 jam dan tim medis spesialis untuk pasien kritis.',
+                'icon' => 'bi-activity',
+                'badge' => 'ICU',
+                'kapasitas' => '5 Tempat Tidur',
+                'gradient_start' => '#0D1B3D',
+                'gradient_end' => '#1a2d5e',
+            ],
+            [
+                'nama' => 'Ruang VIP',
+                'deskripsi' => 'Suite eksklusif dengan fasilitas bintang lima, ruang tamu terpisah, dan layanan butler.',
+                'icon' => 'bi-star',
+                'badge' => 'VVIP',
+                'kapasitas' => '1 Tempat Tidur',
+                'gradient_start' => '#fccb90',
+                'gradient_end' => '#d57eeb',
+            ],
+            [
+                'nama' => 'Ruang Anak',
+                'deskripsi' => 'Ruangan khusus anak dengan dekorasi ramah anak, play area, dan pendampingan orang tua.',
+                'icon' => 'bi-emoji-smile',
+                'badge' => 'Anak',
+                'kapasitas' => '3 Tempat Tidur',
+                'gradient_start' => '#56ab2f',
+                'gradient_end' => '#a8e063',
+            ],
+        ];
+
+        return view('layanan.rawat-inap', compact('ruangan'));
+    }
+}
